@@ -20,6 +20,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -27,6 +28,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--light-color);
+    overflow-x: hidden;
 }
 
 .container {
@@ -228,20 +230,44 @@ header {
     width: 25px;
     height: 3px;
     background-color: var(--secondary-color);
-    transition: 0.4s;
+    transition: all 0.4s ease;
     border-radius: 2px;
+    transform-origin: center;
+}
+
+/* Hamburger animation states */
+.bar1-active {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.bar2-active {
+    opacity: 0;
+}
+
+.bar3-active {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .main-nav {
     background-color: var(--secondary-color);
-    width: 100vw;
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
+    /* Full width background solution */
+    box-shadow: 0 0 0 100vmax var(--secondary-color);
+    clip-path: inset(0 -100vmax);
+}
+
+/* Sticky navigation when scrolling */
+.main-nav.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1), 0 0 0 100vmax var(--secondary-color);
+    clip-path: inset(0 -100vmax);
 }
 
 .main-nav .container {
@@ -1057,28 +1083,63 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Fix container padding for mobile */
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Header fixes */
+    header {
+        padding: 15px 0;
+    }
+    
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+    }
+    
     .hamburger-menu {
         display: flex;
+        position: relative;
+        z-index: 1002;
     }
     
     .contact-info {
         display: none;
     }
     
+    /* Reset desktop sticky styles for mobile */
     .main-nav {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 320px;
+        width: 280px;
         height: 100vh;
         background-color: var(--secondary-color);
-        z-index: 1000;
-        transition: all 0.4s ease;
-        margin-left: 0;
-        margin-right: 0;
+        z-index: 1001;
+        transition: left 0.4s ease;
+        margin: 0;
+        /* Remove desktop full-width styles */
+        box-shadow: none !important;
+        clip-path: none !important;
     }
     
     .main-nav.active {
+        left: 0;
+    }
+    
+    /* Remove sticky behavior on mobile - keep it simple */
+    .main-nav.sticky {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        box-shadow: none !important;
+        clip-path: none !important;
+    }
+    
+    .main-nav.sticky.active {
         left: 0;
     }
     
@@ -1113,12 +1174,65 @@ footer {
         background-color: var(--primary-color);
     }
     
+    /* Hero section mobile fixes */
+    #home {
+        height: 400px !important;
+    }
+    
     .hero h1 {
-        font-size: 36px;
+        font-size: 2.2rem !important;
+        margin-bottom: 15px !important;
     }
     
     .hero h2 {
-        font-size: 20px;
+        font-size: 1.2rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .hero p {
+        font-size: 1rem !important;
+        margin-bottom: 25px !important;
+        padding: 0 10px;
+    }
+    
+    /* Button fixes */
+    .hero .btn {
+        padding: 12px 25px !important;
+        font-size: 0.9rem !important;
+        margin: 5px !important;
+    }
+    
+    /* Services grid mobile */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    /* Gallery mobile */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Video section mobile */
+    .gearbox-video {
+        padding: 40px 0 30px 0 !important;
+    }
+    
+    .video-tile {
+        max-width: 100% !important;
+        margin: 0 10px;
+    }
+    
+    /* Section padding mobile */
+    section {
+        padding: 60px 0 !important;
+    }
+    
+    /* Features grid mobile */
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
     
     .about-content {

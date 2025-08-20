@@ -51,13 +51,15 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Expert Auto Repair Services</h1>
-            <h2>Quality Service, Fair Prices, Professional Results</h2>
-            <div class="hero-buttons">
-                <a href="#services" class="btn btn-primary">Our Services</a>
-                <a href="#contact" class="btn btn-secondary">Book Appointment</a>
+    <section id="home" style="position:relative; width:100%; height:450px; overflow:hidden; background:none !important;">
+        <img src="img/Media (3).jpg" alt="Westknights Auto Repairs Workshop" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.6);">
+        <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.3); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;">
+            <h1 style="color:#fff; font-size:3rem; font-weight:700; margin-bottom:20px; text-shadow:2px 2px 8px rgba(0,0,0,0.7); font-family:'Montserrat', sans-serif;">Westknights Auto Repairs</h1>
+            <h2 style="color:#ffd700; font-size:1.6rem; font-weight:500; margin-bottom:25px; text-shadow:1px 1px 4px rgba(0,0,0,0.7);">Expert Auto Repair Services in Polokwane</h2>
+            <p style="color:#fff; font-size:1.2rem; margin-bottom:35px; max-width:500px; text-shadow:1px 1px 4px rgba(0,0,0,0.7); line-height:1.5;">Quality Service, Fair Prices, Professional Results. Your trusted partner for all automotive repairs, diagnostics, and maintenance.</p>
+            <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+                <a href="#services" class="btn btn-primary" style="padding:14px 35px; font-size:1.1rem; text-decoration:none; border-radius:6px;">Our Services</a>
+                <a href="#contact" class="btn btn-secondary" style="padding:14px 35px; font-size:1.1rem; text-decoration:none; border-radius:6px;">Book Appointment</a>
             </div>
         </div>
     </section>
@@ -72,45 +74,66 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-oil-can"></i>
+                        <i class="fas fa-tools"></i>
                     </div>
-                    <h3>Oil Changes</h3>
-                    <p>Regular oil changes to keep your engine running smoothly and extend its life.</p>
+                    <h3>Major & Minor Service</h3>
+                    <p>Comprehensive vehicle maintenance including oil changes, safety checks, and essential replacements for reliable performance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-engine-warning"></i>
+                    </div>
+                    <h3>Engine Repair & Overhaul</h3>
+                    <p>Diagnosis and repair of engine faults, including complete overhauls and rebuilds for optimal performance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Suspension Rebuild</h3>
+                    <p>Restoration and repair of your vehicle’s suspension system for a smooth and safe ride.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Clutch Repair</h3>
+                    <p>Inspection, repair, and replacement of clutch components to restore smooth gear shifting.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Car Wiring & Troubleshooting</h3>
+                    <p>Diagnosis and repair of electrical wiring issues to ensure all systems operate reliably.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <h3>Engine Repair</h3>
-                    <p>Complete engine diagnostics, repairs and rebuilds by certified technicians.</p>
+                    <h3>Gearbox Coding & Repair</h3>
+                    <p>Advanced diagnostics, coding, and repair of manual and automatic gearboxes for optimal transmission performance.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-car-battery"></i>
+                        <i class="fas fa-microchip"></i>
                     </div>
-                    <h3>Electrical Systems</h3>
-                    <p>Diagnosis and repair of all electrical components and battery services.</p>
+                    <h3>Module Coding</h3>
+                    <p>Programming and coding of electronic control modules to ensure compatibility and optimal function.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-brake-system"></i>
+                        <i class="fas fa-clone"></i>
                     </div>
-                    <h3>Brake Service</h3>
-                    <p>Inspection and repair of brake pads, rotors, calipers and brake lines.</p>
+                    <h3>Computer Box Cloning & Programming</h3>
+                    <p>Duplication and programming of vehicle computer boxes for seamless replacement or upgrade.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-temperature-high"></i>
+                        <i class="fas fa-key"></i>
                     </div>
-                    <h3>A/C Service</h3>
-                    <p>Air conditioning diagnostics, recharge, and repair for all vehicle makes.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <h3>Diagnostics</h3>
-                    <p>Advanced computer diagnostics to pinpoint your vehicle's issues accurately.</p>
+                    <h3>Key Programming</h3>
+                    <p>Programming and reprogramming of vehicle keys and transponders for security and convenience.</p>
                 </div>
             </div>
         </div>
@@ -190,6 +213,43 @@
     </section>
 
     <!-- Gallery Section -->
+    <!-- Gearbox Repair Video Section -->
+    <section class="gearbox-video" style="background:#f7f7f7; padding:60px 0 40px 0;">
+        <div class="container" style="max-width:900px; margin:auto; text-align:center;">
+            <h2 style="font-size:2.2rem; font-weight:700; color:#c72121; margin-bottom:18px;">See Gearbox Repair in Action!</h2>
+            <p style="font-size:1.15rem; color:#444; margin-bottom:32px;">Watch our team expertly repair a gearbox. This is the level of care and skill we bring to every job at Westknights Auto Repairs.</p>
+            <div class="video-tile" style="display:inline-block; position:relative; width:100%; max-width:480px; aspect-ratio:16/9; border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.10); background:#222; cursor:pointer;">
+                <video id="gearboxVideo" src="img/MicrosoftTeams-video (4).mp4" poster="img/Media (1).jpg" autoplay muted playsinline style="width:100%; height:100%; object-fit:cover; display:block; border-radius:16px;">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="fullscreen-icon" style="position:absolute; bottom:16px; right:16px; background:rgba(0,0,0,0.6); color:#fff; border-radius:50%; padding:8px; cursor:pointer; z-index:2;">
+                    <i class="fas fa-expand"></i>
+                </div>
+            </div>
+        </div>
+        <script>
+        // Responsive fullscreen on click
+        document.addEventListener('DOMContentLoaded', function() {
+            var videoTile = document.querySelector('.video-tile');
+            var video = document.getElementById('gearboxVideo');
+            var icon = document.querySelector('.fullscreen-icon');
+            function openFullscreen() {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) {
+                    video.msRequestFullscreen();
+                }
+            }
+            videoTile.addEventListener('click', openFullscreen);
+            icon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openFullscreen();
+            });
+        });
+        </script>
+    </section>
     <section id="gallery" class="gallery">
         <div class="container">
             <div class="section-header">
@@ -207,6 +267,30 @@
                     <img src="valve spring repair.jpg" alt="Valve Spring Repair">
                     <div class="gallery-overlay">
                         <div class="gallery-text">Valve Spring Repair</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/Media.jpg" alt="Major & Minor Service">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Major & Minor Service</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/Media (1).jpg" alt="Engine Repair & Overhaul">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Engine Repair & Overhaul</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/Media (2).jpg" alt="Computer Box Cloning & Programming">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Computer Box Cloning & Programming</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/Media (4).jpg" alt="Car Wiring & Troubleshooting">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Car Wiring & Troubleshooting</div>
                     </div>
                 </div>
                 <!-- Additional gallery items would be added here with more images -->
@@ -316,12 +400,15 @@
                             <label for="service">Service Required</label>
                             <select id="service" name="service" required>
                                 <option value="" disabled selected>Select a service</option>
-                                <option value="oil-change">Oil Change</option>
-                                <option value="brake-service">Brake Service</option>
-                                <option value="engine-repair">Engine Repair</option>
-                                <option value="electrical">Electrical System</option>
-                                <option value="ac-service">A/C Service</option>
-                                <option value="diagnostics">Diagnostics</option>
+                                <option value="major-minor-service">Major & Minor Service</option>
+                                <option value="engine-repair-overhaul">Engine Repair & Overhaul</option>
+                                <option value="suspension-rebuild">Suspension Rebuild</option>
+                                <option value="clutch-repair">Clutch Repair</option>
+                                <option value="car-wiring">Car Wiring & Troubleshooting</option>
+                                <option value="gearbox-coding-repair">Gearbox Coding & Repair</option>
+                                <option value="module-coding">Module Coding</option>
+                                <option value="computer-box-cloning">Computer Box Cloning & Programming</option>
+                                <option value="key-programming">Key Programming</option>
                                 <option value="other">Other (Please specify)</option>
                             </select>
                         </div>

@@ -1,19 +1,80 @@
 // Document Ready Function
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
+    // Mobile Menu Toggle with synchronized animation
     const hamburger = document.querySelector('.hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
     
     if (hamburger) {
         hamburger.addEventListener('click', function() {
+            const isActive = hamburger.classList.contains('active');
+            
+            // Toggle menu state
             hamburger.classList.toggle('active');
             mainNav.classList.toggle('active');
             
-            // Animate hamburger bars
+            // Synchronize hamburger bars animation
             const bars = hamburger.querySelectorAll('.bar');
-            bars[0].classList.toggle('bar1-active');
-            bars[1].classList.toggle('bar2-active');
-            bars[2].classList.toggle('bar3-active');
+            if (bars.length >= 3) {
+                bars[0].classList.toggle('bar1-active');
+                bars[1].classList.toggle('bar2-active');
+                bars[2].classList.toggle('bar3-active');
+            }
+        });
+        
+        // Close menu when clicking nav links (mobile)
+        const navLinks = document.querySelectorAll('.main-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (hamburger.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    
+                    const bars = hamburger.querySelectorAll('.bar');
+                    if (bars.length >= 3) {
+                        bars[0].classList.remove('bar1-active');
+                        bars[1].classList.remove('bar2-active');
+                        bars[2].classList.remove('bar3-active');
+                    }
+                }
+            });
+        });
+    }
+
+    // Sticky Navigation on Scroll (Desktop only)
+    const navbar = document.querySelector('.main-nav');
+    const header = document.querySelector('header');
+    
+    if (navbar && header) {
+        const headerHeight = header.offsetHeight;
+        
+        window.addEventListener('scroll', function() {
+            // Only enable sticky behavior on desktop (screens wider than 768px)
+            if (window.innerWidth > 768) {
+                if (window.pageYOffset > headerHeight) {
+                    navbar.classList.add('sticky');
+                    header.classList.add('sticky');
+                    // Add padding to body to prevent content jump
+                    document.body.style.paddingTop = navbar.offsetHeight + 'px';
+                } else {
+                    navbar.classList.remove('sticky');
+                    header.classList.remove('sticky');
+                    document.body.style.paddingTop = '0';
+                }
+            } else {
+                // On mobile, always remove sticky classes and padding
+                navbar.classList.remove('sticky');
+                header.classList.remove('sticky');
+                document.body.style.paddingTop = '0';
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 768) {
+                navbar.classList.remove('sticky');
+                header.classList.remove('sticky');
+                document.body.style.paddingTop = '0';
+            }
         });
     }
 
@@ -248,23 +309,4 @@ document.addEventListener('DOMContentLoaded', function() {
             this.querySelector('.service-icon').style.transform = 'scale(1) rotate(0)';
         });
     });
-});
-
-// Hamburger menu animation
-document.addEventListener('DOMContentLoaded', function() {
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .bar1-active {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-        
-        .bar2-active {
-            opacity: 0;
-        }
-        
-        .bar3-active {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-    `;
-    document.head.appendChild(style);
 });
