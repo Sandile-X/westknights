@@ -10,6 +10,8 @@
     --white: #ffffff;              /* White */
     --gray: #777777;               /* Medium gray */
     --shadow: rgba(0, 0, 0, 0.1);  /* Shadow color */
+    /* Dynamic header offset for sticky behavior */
+    --header-offset: 0px;
 }
 
 * {
@@ -29,6 +31,35 @@ body {
     line-height: 1.6;
     background-color: var(--light-color);
     overflow-x: hidden;
+    /* Use CSS custom property for dynamic spacing to prevent content jump */
+    padding-top: var(--header-offset);
+    transition: padding-top 0.3s ease;
+}
+
+/* Performance optimizations */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Smooth scrolling optimization */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* Optimize animations for performance */
+*, *::before, *::after {
+    backface-visibility: hidden;
+}
+
+/* Prevent scroll issues and optimize rendering */
+section {
+    position: relative;
+    z-index: auto;
+    /* Contain layout to prevent reflows */
+    contain: layout style paint;
 }
 
 .container {
@@ -995,7 +1026,7 @@ footer {
 .back-to-top {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 30px;
     width: 40px;
     height: 40px;
     background-color: var(--primary-color);
@@ -1088,6 +1119,11 @@ footer {
     background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
     position: relative;
     overflow: hidden;
+    /* Prevent any potential duplication issues */
+    z-index: 1;
+    /* Ensure proper rendering */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .hero-container {
@@ -1149,6 +1185,9 @@ footer {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    /* Optimize image rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 .hero-image:hover img {
@@ -1297,17 +1336,31 @@ footer {
         left: 0;
     }
     
-    /* Remove sticky behavior on mobile - keep it simple */
+    /* Sticky behavior on mobile - keep navbar visible and fixed */
     .main-nav.sticky {
         position: fixed;
         left: -100%;
         top: 0;
-        box-shadow: none !important;
-        clip-path: none !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        background-color: rgba(0,0,0,0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1001;
     }
     
     .main-nav.sticky.active {
         left: 0;
+    }
+    
+    /* Make sure header is also sticky on mobile */
+    header.sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     
     .main-nav .container {

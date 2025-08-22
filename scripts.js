@@ -40,40 +40,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Sticky Navigation on Scroll (Desktop only)
+    // Sticky Navigation on Scroll with performance optimization
     const navbar = document.querySelector('.main-nav');
     const header = document.querySelector('header');
     
     if (navbar && header) {
         const headerHeight = header.offsetHeight;
+        let isSticky = false;
+        let ticking = false;
         
-        window.addEventListener('scroll', function() {
-            // Only enable sticky behavior on desktop (screens wider than 768px)
-            if (window.innerWidth > 768) {
-                if (window.pageYOffset > headerHeight) {
-                    navbar.classList.add('sticky');
-                    header.classList.add('sticky');
-                    // Add padding to body to prevent content jump
-                    document.body.style.paddingTop = navbar.offsetHeight + 'px';
-                } else {
-                    navbar.classList.remove('sticky');
-                    header.classList.remove('sticky');
-                    document.body.style.paddingTop = '0';
-                }
-            } else {
-                // On mobile, always remove sticky classes and padding
+        function updateStickyHeader() {
+            const scrollTop = window.pageYOffset;
+            
+            if (scrollTop > headerHeight && !isSticky) {
+                navbar.classList.add('sticky');
+                header.classList.add('sticky');
+                isSticky = true;
+                document.documentElement.style.setProperty('--header-offset', headerHeight + 'px');
+            } else if (scrollTop <= headerHeight && isSticky) {
                 navbar.classList.remove('sticky');
                 header.classList.remove('sticky');
-                document.body.style.paddingTop = '0';
+                isSticky = false;
+                document.documentElement.style.removeProperty('--header-offset');
+            }
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateStickyHeader);
+                ticking = true;
             }
         });
         
-        // Handle window resize
+        // Handle window resize - recalculate header height
         window.addEventListener('resize', function() {
-            if (window.innerWidth <= 768) {
+            const newHeaderHeight = header.offsetHeight;
+            if (window.pageYOffset <= newHeaderHeight && isSticky) {
                 navbar.classList.remove('sticky');
                 header.classList.remove('sticky');
-                document.body.style.paddingTop = '0';
+                isSticky = false;
+                document.documentElement.style.removeProperty('--header-offset');
             }
         });
     }
@@ -152,15 +159,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Back to top button
+    // Back to top button with optimized scroll handling
     const backToTopBtn = document.getElementById('backToTop');
     
     if (backToTopBtn) {
-        window.addEventListener('scroll', function() {
+        let ticking = false;
+        
+        function updateBackToTop() {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
+            }
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateBackToTop);
+                ticking = true;
             }
         });
         
